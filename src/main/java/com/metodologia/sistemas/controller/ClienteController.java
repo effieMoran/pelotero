@@ -1,8 +1,7 @@
 package com.metodologia.sistemas.controller;
 
-
 import com.metodologia.sistemas.entity.Cliente;
-import com.metodologia.sistemas.repository.ClienteRepository;
+import com.metodologia.sistemas.service.imp.ClienteServiceImplementation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -13,16 +12,30 @@ import java.util.List;
 public class ClienteController {
 
     @Autowired
-    private ClienteRepository clienteRepository;
+    private ClienteServiceImplementation clienteServiceImplementation;
 
     @RequestMapping(method= RequestMethod.POST)
     public void save(@RequestBody Cliente cliente){
-        clienteRepository.save(cliente);
+        clienteServiceImplementation.saveCliente(cliente);
     }
 
     @RequestMapping(method=RequestMethod.GET)
     public List<Cliente> list() {
-        return clienteRepository.findAll();
+        return clienteServiceImplementation.findAll();
     }
 
+    @RequestMapping(value = "/{id}", method = RequestMethod.PUT)
+    public void updateClient(@PathVariable int id, @RequestBody Cliente cliente){
+        clienteServiceImplementation.updateCliente(id, cliente);
+    }
+
+    @RequestMapping(value = "/{id}", method= RequestMethod.DELETE)
+    public void save(@PathVariable int id){
+        clienteServiceImplementation.deleteCliente(id);
+    }
+
+    @RequestMapping(value = "/{id}", method = RequestMethod.GET)
+    public void updateClient(@PathVariable int id){
+        clienteServiceImplementation.findById(id);
+    }
 }

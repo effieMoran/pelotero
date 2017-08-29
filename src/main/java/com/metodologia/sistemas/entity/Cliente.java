@@ -1,7 +1,11 @@
 package com.metodologia.sistemas.entity;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 
-
+@Entity
 public class Cliente {
 
     private String nombre;
@@ -12,11 +16,14 @@ public class Cliente {
     private String CUIL;
     private String otraInformacion;
     private String celular;
-    private static int id = 1;
 
-    public Cliente(String nombre, String apellido, String telefono,
-                   String direccion, String email, String CUIL,
-                   String otraInformacion, String celular) {
+    @Id
+    @GeneratedValue(strategy= GenerationType.AUTO)
+    private int id;
+
+    public Cliente(){}
+
+    public Cliente(String nombre, String apellido, String telefono, String direccion, String email, String CUIL, String otraInformacion, String celular, int id) {
         this.nombre = nombre;
         this.apellido = apellido;
         this.telefono = telefono;
@@ -25,24 +32,24 @@ public class Cliente {
         this.CUIL = CUIL;
         this.otraInformacion = otraInformacion;
         this.celular = celular;
+        this.id = id;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public Cliente(String nombre, String apellido) {
         this.nombre = nombre;
         this.apellido = apellido;
-        this.id++;
-    }
 
-    public static int getId() {
-        return id;
-    }
-
-    public static void setId(int id) {
-        Cliente.id = id;
     }
 
     public String getNombre() {
-
         return nombre;
     }
 
