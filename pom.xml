@@ -94,6 +94,12 @@
                 </plugin>
             </plugins>
         </pluginManagement>
+        <plugins>
+          <plugin>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-maven-plugin</artifactId>
+          </plugin>
+        </plugins>
     </build>
   <!-- Package as an executable jar -->
 
