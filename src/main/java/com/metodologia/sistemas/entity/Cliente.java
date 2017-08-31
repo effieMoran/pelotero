@@ -1,22 +1,35 @@
 package com.metodologia.sistemas.entity;
 
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
+@ApiModel(value = "Cliente", description = "Datos de los clientes del pelotero")
 @Entity
 public class Cliente {
 
+    @ApiModelProperty(value = "Nombre de pila", required = true, example = "Aegon" )
     private String nombre;
+    @ApiModelProperty(value = "Apellido", required = true, example = "Targaryen")
     private String apellido;
+    @ApiModelProperty(value = "Telefono fijo", required = false, example = "362-4409088")
     private String telefono;
+    @ApiModelProperty(value = "Direccion", required = false)
     private String direccion;
+    @ApiModelProperty(value = "email", required = false)
     private String email;
+    @ApiModelProperty(value = "CUIL/CUIT", required = false, example = "19-12345678-4")
     private String CUIL;
-    private String otraInformacion;
+    @ApiModelProperty(value = "Telefono celular", required = false,  example = "397-4567589")
     private String celular;
+    @ApiModelProperty(value = "Otra informacion relevante", required = false, example = "Tiene 10% de descuento por que sale en Game of Thrones")
+    private String otraInformacion;
 
+    @ApiModelProperty(value = "ID del cliente", required = false)
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
     private int id;
