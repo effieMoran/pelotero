@@ -2,11 +2,13 @@ package com.metodologia.sistemas.controller;
 
 import com.metodologia.sistemas.entity.Cliente;
 import com.metodologia.sistemas.service.imp.ClienteServiceImplementation;
+import io.swagger.annotations.Api;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@Api(value = "Cliente", description = "CRUD de clientes")
 @RestController
 @RequestMapping("/clientes")
 public class ClienteController {
