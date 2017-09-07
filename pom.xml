@@ -86,11 +86,11 @@
           <scope>compile</scope>
       </dependency>
       <!-- h2 -->
-      <dependency>
+      <!--dependency>
           <groupId>com.h2database</groupId>
           <artifactId>h2</artifactId>
           <version>1.4.193</version>
-      </dependency>
+      </dependency-->
   </dependencies>
 
     <repositories>

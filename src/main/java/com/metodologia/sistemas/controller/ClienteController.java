@@ -19,7 +19,6 @@ public class ClienteController {
     private ClienteServiceImplementation clienteServiceImplementation;
 
     @ApiOperation(value = "Crear un cliente")
-    @ApiImplicitParam(name = "Cliente", required = true, dataType = "Cliente", paramType = "body")
     @RequestMapping(method= RequestMethod.POST)
     public void save(@RequestBody Cliente cliente){
         clienteServiceImplementation.saveCliente(cliente);
