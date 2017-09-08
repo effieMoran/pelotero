@@ -2,12 +2,23 @@ package com.metodologia.sistemas.entity;
 
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
-import lombok.*;
 
+import lombok.AllArgsConstructor;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
+
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
+import javax.persistence.PrimaryKeyJoinColumn;
 
 @ApiModel(value = "Cliente", description = "Datos de los clientes del pelotero")
 @NoArgsConstructor
@@ -35,7 +46,9 @@ public class Cliente {
     @ApiModelProperty(name = "Direccion",value = "Direccion", required = false)
     @Getter
     @Setter
-    private String direccion;
+    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @PrimaryKeyJoinColumn(name = "direccion_id")
+    private Direccion direccion;
 
     @ApiModelProperty(name = "email",value = "email", required = false)
     @Getter
@@ -62,7 +75,7 @@ public class Cliente {
     @Setter
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
+    @Column(name = "cliente_id")
     private int id;
-
 
 }
