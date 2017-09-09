@@ -17,8 +17,8 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
-import javax.persistence.PrimaryKeyJoinColumn;
 
 @ApiModel(value = "Cliente", description = "Datos de los clientes del pelotero")
 @NoArgsConstructor
@@ -43,11 +43,12 @@ public class Cliente {
     @Setter
     private String telefono;
 
+
     @ApiModelProperty(name = "Direccion",value = "Direccion", required = false)
     @Getter
     @Setter
-    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    @PrimaryKeyJoinColumn(name = "direccion_id")
+    @OneToOne(fetch=FetchType.LAZY, cascade = CascadeType.PERSIST)
+    @JoinColumn(name="direccion_fk", nullable = false)
     private Direccion direccion;
 
     @ApiModelProperty(name = "email",value = "email", required = false)
@@ -58,7 +59,7 @@ public class Cliente {
     @ApiModelProperty(name = "CUIL/CUIT",value = "CUIL/CUIT", required = false, example = "19-12345678-4")
     @Getter
     @Setter
-    private String CUIL;
+    private String cuil;
 
     @ApiModelProperty(name = "Celular", value = "Telefono celular", required = false,  example = "397-4567589")
     @Getter
@@ -77,5 +78,4 @@ public class Cliente {
     @GeneratedValue(strategy= GenerationType.AUTO)
     @Column(name = "cliente_id")
     private int id;
-
 }
