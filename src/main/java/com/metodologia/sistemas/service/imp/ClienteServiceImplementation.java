@@ -21,7 +21,7 @@ public class ClienteServiceImplementation implements ClienteService{
 
     @Override
     public Cliente findById(int id) {
-        return clienteRepository.getOne(id);
+        return clienteRepository.findById(id);
     }
 
     @Override
@@ -31,7 +31,6 @@ public class ClienteServiceImplementation implements ClienteService{
 
     @Override
     public void updateCliente(int id, Cliente cliente) {
-        cliente.setId(id);
         clienteRepository.save(cliente);
     }
 

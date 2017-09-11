@@ -31,6 +31,8 @@ public class ClienteController {
         clienteServiceImplementation.updateCliente(id, cliente);
     }
 
+    @ApiOperation(value = "Borra un cliente")
+    @ApiImplicitParam(name = "id", required = true, dataType = "int", paramType = "path")
     @RequestMapping(value = "/{id}", method= RequestMethod.DELETE)
     public void save(@PathVariable int id){
         clienteServiceImplementation.deleteCliente(id);
@@ -39,8 +41,8 @@ public class ClienteController {
     @ApiOperation(value = "Devuelve un cliente por su ID")
     @ApiImplicitParam(name = "id", required = true, dataType = "int", paramType = "path")
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
-    public void updateClient(@PathVariable int id){
-        clienteServiceImplementation.findById(id);
+    public Cliente getCliente(@PathVariable int id){
+        return  clienteServiceImplementation.findById(id);
     }
 
     @ApiOperation(value = "Devuelve una lista de clientes")
@@ -48,5 +50,6 @@ public class ClienteController {
     public List<Cliente> list() {
         return clienteServiceImplementation.findAll();
     }
+
 
 }

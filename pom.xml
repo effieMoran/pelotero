@@ -87,6 +87,15 @@
           <version>1.16.18</version>
           <scope>provided</scope>
       </dependency>
+      <!-- issues -->
+      <dependency>
+          <groupId>org.hibernate</groupId>
+          <artifactId>hibernate-java8</artifactId>
+      </dependency>
+      <dependency>
+          <groupId>com.fasterxml.jackson.datatype</groupId>
+          <artifactId>jackson-datatype-jsr310</artifactId>
+      </dependency>
   </dependencies>
 
     <repositories>

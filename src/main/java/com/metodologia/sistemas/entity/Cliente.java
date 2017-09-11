@@ -12,13 +12,16 @@ import lombok.ToString;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
+import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
+import java.util.Set;
 
 @ApiModel(value = "Cliente", description = "Datos de los clientes del pelotero")
 @NoArgsConstructor
@@ -78,4 +81,10 @@ public class Cliente {
     @GeneratedValue(strategy= GenerationType.AUTO)
     @Column(name = "cliente_id")
     private int id;
+
+    @Getter
+    @Setter
+    @OneToMany(fetch=FetchType.LAZY, cascade = CascadeType.ALL )
+    @ElementCollection(targetClass=Reserva.class)
+    private Set<Reserva> reservas;
 }
