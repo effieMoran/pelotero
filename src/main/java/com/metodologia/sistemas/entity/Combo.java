@@ -1,6 +1,7 @@
 package com.metodologia.sistemas.entity;
 
 import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -27,10 +28,12 @@ import java.util.Set;
 @Entity
 public class Combo {
 
+    @ApiModelProperty(name = "Precio", value = "Precio", required = true, example = "377.00" )
     @Getter
     @Setter
     private double precio;
 
+    @ApiModelProperty(name = "ID comobo", value = "Identificador del combo", required = true, example = "34" )
     @Setter
     @Getter
     @Id

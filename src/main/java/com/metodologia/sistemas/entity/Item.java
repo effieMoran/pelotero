@@ -2,6 +2,7 @@ package com.metodologia.sistemas.entity;
 
 
 import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -23,10 +24,12 @@ import javax.persistence.Id;
 @Entity
 public class Item {
 
+    @ApiModelProperty(name = "Nombre", value = "Nombre del item incluidp", required = true, example = "Torta de 3kg" )
     @Getter
     @Setter
     private String name;
 
+    @ApiModelProperty(name = "id", value = "identificador", required = false, example = "4" )
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
     @Column(name = "Item_id")
