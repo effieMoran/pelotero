@@ -1,6 +1,5 @@
 package com.metodologia.sistemas.entity;
 
-
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.AllArgsConstructor;
@@ -31,6 +30,8 @@ public class Item {
 
     @ApiModelProperty(name = "id", value = "identificador", required = false, example = "4" )
     @Id
+    @Getter
+    @Setter
     @GeneratedValue(strategy= GenerationType.AUTO)
     @Column(name = "Item_id")
     private int id;
