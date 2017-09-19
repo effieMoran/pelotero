@@ -1,6 +1,5 @@
 package com.metodologia.sistemas.service.imp;
 
-
 import com.metodologia.sistemas.entity.Item;
 import com.metodologia.sistemas.repository.ItemRepository;
 import com.metodologia.sistemas.service.ItemService;
@@ -38,6 +37,5 @@ public class ItemServiceImplementation implements ItemService {
     public List<Item> findAll() {
         return itemRepository.findAll();
     }
-
 
 }

@@ -1,6 +1,5 @@
 package com.metodologia.sistemas.entity;
 
-
 import io.swagger.annotations.ApiModel;
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
@@ -38,12 +37,9 @@ public class LineaBebida {
     @Getter
     private int cantidad;
 
-
     @Setter
     @Getter
     @OneToOne(fetch= FetchType.LAZY, cascade = CascadeType.PERSIST)
     @JoinColumn(name="bebida_fk", nullable = false)
     private Bebida bebida;
-
-
 }

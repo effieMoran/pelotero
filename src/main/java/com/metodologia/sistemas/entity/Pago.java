@@ -1,7 +1,5 @@
 package com.metodologia.sistemas.entity;
 
-
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.metodologia.sistemas.enums.MedioDePago;
 import io.swagger.annotations.ApiModel;
 import lombok.AllArgsConstructor;
@@ -44,9 +42,9 @@ public class Pago {
 
     @Getter
     @Setter
-    @ManyToMany(fetch=FetchType.LAZY, cascade = CascadeType.ALL, mappedBy="bebida_id" )
+    @ManyToMany(fetch=FetchType.LAZY, cascade = CascadeType.ALL, mappedBy="linea_bebida_id" )
     @ElementCollection(targetClass=LineaBebida.class)
-    private Set<Bebida> bebidas;
+    private Set<LineaBebida> lineaBebidas;
 
     @Getter
     @Setter
@@ -64,5 +62,4 @@ public class Pago {
     @GeneratedValue(strategy= GenerationType.AUTO)
     @Column(name = "pago_id")
     private int id;
-
 }
