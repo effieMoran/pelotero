@@ -18,7 +18,6 @@ public class ReservaServiceImplementation implements ReservaService{
         reservaRepository.save(reserva);
     }
 
-
     public List<Reserva> findAll() {
         return reservaRepository.findAll();
     }

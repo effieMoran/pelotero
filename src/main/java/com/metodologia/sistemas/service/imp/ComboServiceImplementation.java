@@ -40,4 +40,8 @@ public class ComboServiceImplementation implements ComboService{
         return comboRepository.findAll();
     }
 
+    public   Combo findByPrecio(double precio){
+        return comboRepository.findByPrecio(precio);
+    }
+
 }

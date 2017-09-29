@@ -51,10 +51,16 @@ public class ComboController {
         return  comboServiceImplementation.findById(id);
     }
 
-    @ApiOperation(value = "Devuelve una lista de combo")
+    @ApiOperation(value = "Devuelve una lista de combos")
     @RequestMapping(method=RequestMethod.GET)
     public List<Combo> list() {
         return comboServiceImplementation.findAll();
     }
 
+    @ApiOperation(value = "Devuelve un combo por su precio")
+    @ApiImplicitParam(name = "precio", required = true, dataType = "double", paramType = "path")
+    @RequestMapping(value = "/precio={precio}", method = RequestMethod.GET)
+    public Combo getComboPrecio(@PathVariable double precio){
+        return  comboServiceImplementation.findByPrecio(precio);
+    }
 }
