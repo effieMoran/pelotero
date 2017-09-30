@@ -37,6 +37,11 @@ public class Usuario {
     //@Transient
     private String password;
 
+    @ApiModelProperty(name = "Es administrador", value = "administrador")
+    @Getter
+    @Setter
+    private boolean isAdmin;
+
     @ApiModelProperty(name = "ID Usuario", value = "ID del usuario")
     @Getter
     @Setter

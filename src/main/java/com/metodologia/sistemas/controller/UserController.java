@@ -30,7 +30,9 @@ public class UserController {
     @ApiOperation(value = "Crear un Usuario")
     @RequestMapping(value = "/registrar", method= RequestMethod.POST)
     public void save(@RequestBody Usuario user){
-        userServiceImplementation.saveUser(user);
+        if(!userServiceImplementation.userExists(user.getUsername())) {
+            userServiceImplementation.saveUser(user);
+        }
     }
 
 }

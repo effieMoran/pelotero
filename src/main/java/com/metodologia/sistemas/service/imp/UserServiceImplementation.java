@@ -50,4 +50,10 @@ public class UserServiceImplementation implements UserService{
         //return null;
         return userRepository.findByUsername(username);
     }
+
+    public boolean userExists(String username){
+        Usuario usuario = userRepository.findByUsername(username);
+        return ! (usuario == null);
+
+    }
 }
