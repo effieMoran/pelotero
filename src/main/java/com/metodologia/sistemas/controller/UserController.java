@@ -3,8 +3,10 @@ package com.metodologia.sistemas.controller;
 import com.metodologia.sistemas.entity.Usuario;
 import com.metodologia.sistemas.service.imp.UserServiceImplementation;
 import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -26,7 +28,6 @@ public class UserController {
         return userServiceImplementation.findAll();
     }
 
-    //TODO: VERIFY IF THERE IS OTHER USER WITH THE SAME NAME
     @ApiOperation(value = "Crear un Usuario")
     @RequestMapping(value = "/registrar", method= RequestMethod.POST)
     public void save(@RequestBody Usuario user){
@@ -35,4 +36,23 @@ public class UserController {
         }
     }
 
+    @ApiOperation(value = "Crear un Usuario")
+    @RequestMapping(value = "/loggin", method= RequestMethod.POST)
+    public boolean loggin(@RequestBody Usuario user){
+        return userServiceImplementation.userMatches(user);
+    }
+
+    @ApiOperation(value = "Actualiza un usuario")
+    @ApiImplicitParam(name = "id", required = true, dataType = "int", paramType = "path")
+    @RequestMapping(value = "/{id}", method = RequestMethod.PUT)
+    public void updateClient(@PathVariable int id, @RequestBody Usuario user){
+        userServiceImplementation.updateUser(id, user);
+    }
+
+    @ApiOperation(value = "Borra un cliente")
+    @ApiImplicitParam(name = "id", required = true, dataType = "int", paramType = "path")
+    @RequestMapping(value = "/{id}", method= RequestMethod.DELETE)
+    public void save(@PathVariable int id){
+        userServiceImplementation.deleteUser(id);
+    }
 }

@@ -31,7 +31,9 @@ public class UserServiceImplementation implements UserService{
 
     @Override
     public void updateUser(int id, Usuario user) {
-        //TODO: UPDATE USER
+        Usuario usuario = userRepository.findById(id);
+        user.setId(id);
+        userRepository.save(user);
     }
 
     @Override
@@ -55,5 +57,11 @@ public class UserServiceImplementation implements UserService{
         Usuario usuario = userRepository.findByUsername(username);
         return ! (usuario == null);
 
+    }
+
+    public boolean userMatches(Usuario user){
+        Usuario usuario = userRepository.findByUsername(user.getUsername());
+        return (usuario.getUsername().equals(user.getUsername()) &&
+                usuario.getPassword().equals(user.getPassword()));
     }
 }

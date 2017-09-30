@@ -37,7 +37,7 @@ public class Usuario {
     //@Transient
     private String password;
 
-    @ApiModelProperty(name = "Es administrador", value = "administrador")
+    @ApiModelProperty
     @Getter
     @Setter
     private boolean isAdmin;
