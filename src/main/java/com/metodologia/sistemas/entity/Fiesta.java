@@ -67,7 +67,7 @@ public class Fiesta {
     @Setter
     @Getter
     @Id
-    @GeneratedValue(strategy= GenerationType.AUTO)
+    @GeneratedValue(strategy= GenerationType.IDENTITY)
     @Column(name = "fiesta_id")
     private int id;
 
