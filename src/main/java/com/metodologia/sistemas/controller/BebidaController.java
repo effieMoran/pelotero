@@ -1,7 +1,7 @@
 package com.metodologia.sistemas.controller;
 
-import com.metodologia.sistemas.entity.Item;
-import com.metodologia.sistemas.service.imp.ItemServiceImplementation;
+import com.metodologia.sistemas.entity.Bebida;
+import com.metodologia.sistemas.service.imp.BebidaServiceImplementation;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiOperation;
@@ -14,46 +14,44 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
-@Api(value = "Item", description = "CRUD de item")
+@Api(value = "Bebidas", description = "CRUD de bebidas")
 @RestController
-@RequestMapping("/items")
-public class ItemController {
+@RequestMapping("/bebidas")
+public class BebidaController {
 
     @Autowired
-    private ItemServiceImplementation itemServiceImplementation;
+    private BebidaServiceImplementation bebidaServiceImplementation;
 
-    @ApiOperation(value = "Crear un item")
+    @ApiOperation(value = "Crear una bebida")
     @RequestMapping(method= RequestMethod.POST)
-    public Item save(@RequestBody Item item){
-        itemServiceImplementation.save(item);
-        return item;
+    public void save(@RequestBody Bebida bebida){
+        bebidaServiceImplementation.saveBebida(bebida);
     }
 
-    @ApiOperation(value = "Actualiza un item")
+    @ApiOperation(value = "Actualiza una bebida")
     @ApiImplicitParam(name = "id", required = true, dataType = "int", paramType = "path")
     @RequestMapping(value = "/{id}", method = RequestMethod.PUT)
-    public void updateClient(@PathVariable int id, @RequestBody Item item){
-        itemServiceImplementation.update(id, item);
+    public void updateBebida(@PathVariable int id, @RequestBody Bebida bebida){
+        bebidaServiceImplementation.updateBebida(id, bebida);
     }
 
-    @ApiOperation(value = "Borra un item")
+    @ApiOperation(value = "Borra una bebida")
     @ApiImplicitParam(name = "id", required = true, dataType = "int", paramType = "path")
     @RequestMapping(value = "/{id}", method= RequestMethod.DELETE)
-    public void save(@PathVariable int id){
-        itemServiceImplementation.delete(id);
+    public void delete(@PathVariable int id){
+        bebidaServiceImplementation.deleteBebida(id);
     }
 
-    @ApiOperation(value = "Devuelve un item por su ID")
+    @ApiOperation(value = "Devuelve una bebida por su ID")
     @ApiImplicitParam(name = "id", required = true, dataType = "int", paramType = "path")
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
-    public Item getCliente(@PathVariable int id){
-        return  itemServiceImplementation.findById(id);
+    public Bebida getBebida(@PathVariable int id){
+        return  bebidaServiceImplementation.findById(id);
     }
 
-    @ApiOperation(value = "Devuelve una lista de items")
+    @ApiOperation(value = "Devuelve una lista de bebidas")
     @RequestMapping(method=RequestMethod.GET)
-    public List<Item> list() {
-        return itemServiceImplementation.findAll();
+    public List<Bebida> list() {
+        return bebidaServiceImplementation.findAll();
     }
-    
 }

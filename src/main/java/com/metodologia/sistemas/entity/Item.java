@@ -32,7 +32,7 @@ public class Item {
     @Id
     @Getter
     @Setter
-    @GeneratedValue(strategy= GenerationType.AUTO)
+    @GeneratedValue(strategy= GenerationType.IDENTITY)
     @Column(name = "Item_id")
     private int id;
 

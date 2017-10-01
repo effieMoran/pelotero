@@ -42,6 +42,8 @@ public class Bebida {
     private int stock;
 
     @Id
+    @Setter
+    @Getter
     @GeneratedValue(strategy= GenerationType.AUTO)
     @Column(name = "bebida_id")
     private int id;

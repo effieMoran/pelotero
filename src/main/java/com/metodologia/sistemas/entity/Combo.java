@@ -37,13 +37,13 @@ public class Combo {
     @Setter
     @Getter
     @Id
-    @GeneratedValue(strategy= GenerationType.AUTO)
+    @GeneratedValue(strategy= GenerationType.IDENTITY)
     @Column(name = "combo_id")
     private int id;
 
     @Setter
     @Getter
-    @OneToMany(fetch= FetchType.LAZY, cascade = CascadeType.ALL )
+    @OneToMany(fetch= FetchType.EAGER, cascade = CascadeType.MERGE )
     @ElementCollection(targetClass=Item.class)
     private Set<Item> items;
 

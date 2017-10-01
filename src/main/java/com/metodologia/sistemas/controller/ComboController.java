@@ -20,14 +20,14 @@ import java.util.List;
 
 public class ComboController {
 
-
     @Autowired
     private ComboServiceImplementation comboServiceImplementation;
 
     @ApiOperation(value = "Crear un combo")
     @RequestMapping(method= RequestMethod.POST)
-    public void save(@RequestBody Combo combo){
+    public Combo save(@RequestBody Combo combo){
         comboServiceImplementation.save(combo);
+        return  combo;
     }
 
     @ApiOperation(value = "Actualiza un combo")
