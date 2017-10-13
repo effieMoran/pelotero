@@ -1,0 +1,113 @@
+package com.metodologia.sistemas.service.imp;
+
+import com.metodologia.sistemas.entity.Combo;
+import com.metodologia.sistemas.entity.Factura;
+import com.metodologia.sistemas.entity.Fiesta;
+import com.metodologia.sistemas.entity.LineaDeFactura;
+import com.metodologia.sistemas.entity.Servicio;
+import com.metodologia.sistemas.repository.FacturaRepository;
+import com.metodologia.sistemas.repository.LineaFacturaRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.Date;
+import java.util.List;
+
+@Service
+public class FacturaServiceImplementation {
+
+    @Autowired
+    FacturaRepository facturaRepository;
+
+    @Autowired
+    LineaFacturaRepository lineaFacturaRepository;
+
+    private static int total;
+    private static final int MAX_CHICOS = 15;
+    private static final double PRECIO_ADICIONAL = 100;
+
+    private static final DateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+    private static final DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+
+    public List<Factura> findAll() {
+        return facturaRepository.findAll();
+    }
+
+    public void saveByFiesta(Fiesta fiesta) {
+        Factura factura = new Factura();
+        total  = 0;
+
+        //TODO: ARREGLA LA FECHA
+        //LocalDate localDate = LocalDate.now();
+        //Date today = new Date(DateTimeFormatter.ofPattern("yyy-MM-dd").format(localDate));
+        //factura.setFecha(today);
+
+        factura.getLineaDeFacturaSet().add(getLineaCombo(fiesta.getCombo(), fiesta.isTurno1(), fiesta.isTurno2()));
+        if(fiesta.getCantChicos() > MAX_CHICOS) {
+            factura.getLineaDeFacturaSet().add(getLineaAdicionalChicos(fiesta.getCantChicos() - MAX_CHICOS));
+        }
+        if(fiesta.getServicio() != null) {
+            factura.getLineaDeFacturaSet().add(getLineaServicio(fiesta.getServicio()));
+        }
+
+        factura.setTotal(total);
+        facturaRepository.save(factura);
+    }
+
+    private LineaDeFactura getLineaAdicionalChicos(int adicionales){
+        LineaDeFactura lineaDeFactura = new LineaDeFactura();
+        lineaDeFactura.setCantidad(adicionales);
+        lineaDeFactura.setPrecioUnitario(adicionales * PRECIO_ADICIONAL );
+        lineaDeFactura.setDescripcion("Extra por invitados adicionales");
+        return lineaDeFactura;
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    private LineaDeFactura getLineaCombo(Combo combo, boolean turno1, boolean turno2){
+        LineaDeFactura lineaCombo = new LineaDeFactura();
+        double precio = combo.getPrecio();
+        if(turno1 && turno2){
+            precio *= 2;
+        }
+        lineaCombo.setPrecioUnitario(precio);
+        total += precio;
+        lineaCombo.setDescripcion("Combo " + combo.getId());
+        return lineaCombo;
+    }
+
+    private LineaDeFactura getLineaServicio(Servicio servicio){
+        LineaDeFactura lineaDeFactura = new LineaDeFactura();
+        if(servicio.isFoto() && servicio.isVideo()){
+            lineaDeFactura.setPrecioUnitario(2000);
+            total += 2000;
+            lineaDeFactura.setDescripcion("Servicio de Fotos y Video");
+        }
+        else if(servicio.isFoto()){
+            lineaDeFactura.setPrecioUnitario(1000);
+            total += 1000;
+            lineaDeFactura.setDescripcion("Servicio de Fotos");
+        }
+        else {
+            lineaDeFactura.setPrecioUnitario(1500);
+            total += 1500;
+            lineaDeFactura.setDescripcion("Servicio de Video");
+        }
+        return lineaDeFactura;
+    }
+}

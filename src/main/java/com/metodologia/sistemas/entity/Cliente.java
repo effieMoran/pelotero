@@ -50,7 +50,7 @@ public class Cliente {
     @ApiModelProperty(name = "Direccion",value = "Direccion", required = false)
     @Getter
     @Setter
-    @OneToOne(fetch=FetchType.LAZY, cascade = CascadeType.PERSIST)
+    @OneToOne(fetch=FetchType.EAGER, cascade = CascadeType.MERGE)
     @JoinColumn(name="direccion_fk", nullable = false)
     private Direccion direccion;
 
@@ -78,7 +78,7 @@ public class Cliente {
     @Getter
     @Setter
     @Id
-    @GeneratedValue(strategy= GenerationType.AUTO)
+    @GeneratedValue(strategy= GenerationType.IDENTITY)
     @Column(name = "cliente_id")
     private int id;
 

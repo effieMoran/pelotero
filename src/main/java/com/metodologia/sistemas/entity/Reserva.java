@@ -41,13 +41,13 @@ public class Reserva {
     @Setter
     @Getter
     @Id
-    @GeneratedValue(strategy= GenerationType.AUTO)
+    @GeneratedValue(strategy= GenerationType.IDENTITY)
     @Column(name = "reserva_id")
     private int id;
 
     @Getter
     @Setter
-    @OneToOne(fetch= FetchType.LAZY, cascade = CascadeType.PERSIST)
+    @OneToOne(fetch= FetchType.EAGER, cascade = CascadeType.MERGE)
     @JoinColumn(name="fiesta_fk", nullable = true)
     private Fiesta fiesta;
 

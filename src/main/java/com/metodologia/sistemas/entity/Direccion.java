@@ -47,7 +47,7 @@ public class Direccion {
     @Getter
     @Setter
     @Id
-    @GeneratedValue(strategy= GenerationType.AUTO)
+    @GeneratedValue(strategy= GenerationType.IDENTITY)
     @Column(name = "direccion_id")
     private int id;
 

@@ -44,7 +44,7 @@ public class Bebida {
     @Id
     @Setter
     @Getter
-    @GeneratedValue(strategy= GenerationType.AUTO)
+    @GeneratedValue(strategy= GenerationType.IDENTITY)
     @Column(name = "bebida_id")
     private int id;
 

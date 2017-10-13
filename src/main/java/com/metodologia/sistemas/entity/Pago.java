@@ -42,13 +42,13 @@ public class Pago {
 
     @Getter
     @Setter
-    @ManyToMany(fetch=FetchType.LAZY, cascade = CascadeType.ALL )
+    @ManyToMany(fetch=FetchType.EAGER, cascade = CascadeType.MERGE )
     @ElementCollection(targetClass=LineaBebida.class)
     private Set<LineaBebida> lineaBebidas;
 
     @Getter
     @Setter
-    @ManyToMany(fetch=FetchType.LAZY, cascade = CascadeType.ALL )
+    @ManyToMany(fetch=FetchType.EAGER, cascade = CascadeType.MERGE )
     @ElementCollection(targetClass=Fiesta.class)
     private Set<Fiesta> fiesta;
 

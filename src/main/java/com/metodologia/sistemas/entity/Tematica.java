@@ -29,7 +29,7 @@ public class Tematica {
     @Setter
     @Getter
     @Id
-    @GeneratedValue(strategy= GenerationType.AUTO)
+    @GeneratedValue(strategy= GenerationType.IDENTITY)
     @Column(name = "tematica_id")
     private int id;
 }

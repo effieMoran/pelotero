@@ -39,7 +39,7 @@ public class LineaBebida {
 
     @Setter
     @Getter
-    @OneToOne(fetch= FetchType.LAZY, cascade = CascadeType.PERSIST)
+    @OneToOne(fetch= FetchType.EAGER, cascade = CascadeType.MERGE)
     @JoinColumn(name="bebida_fk", nullable = false)
     private Bebida bebida;
 }

@@ -60,7 +60,7 @@ public class Fiesta {
 
     @Getter
     @Setter
-    @OneToOne(fetch=FetchType.LAZY, cascade = CascadeType.PERSIST)
+    @OneToOne(fetch=FetchType.EAGER, cascade = CascadeType.MERGE)
     @JoinColumn(name="servicio_fk", nullable = true)
     private Servicio servicio;
 
@@ -73,13 +73,13 @@ public class Fiesta {
 
     @Getter
     @Setter
-    @ManyToOne(fetch=FetchType.LAZY, cascade = CascadeType.PERSIST)
+    @ManyToOne(fetch=FetchType.EAGER, cascade = CascadeType.MERGE)
     @JoinColumn(name="combo_fk", nullable = true)
     private Combo combo;
 
     @Getter
     @Setter
-    @ManyToOne(fetch=FetchType.LAZY, cascade = CascadeType.PERSIST)
+    @ManyToOne(fetch=FetchType.EAGER, cascade = CascadeType.MERGE)
     @JoinColumn(name="tematica_fk", nullable = true)
     private Tematica tematica;
 
