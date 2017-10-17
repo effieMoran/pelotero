@@ -4,6 +4,7 @@ import com.metodologia.sistemas.entity.Combo;
 import com.metodologia.sistemas.entity.Factura;
 import com.metodologia.sistemas.entity.Fiesta;
 import com.metodologia.sistemas.entity.LineaDeFactura;
+import com.metodologia.sistemas.entity.Pago;
 import com.metodologia.sistemas.entity.Servicio;
 import com.metodologia.sistemas.repository.FacturaRepository;
 import com.metodologia.sistemas.repository.LineaFacturaRepository;
@@ -15,7 +16,9 @@ import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.Date;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Set;
 
 @Service
 public class FacturaServiceImplementation {
@@ -37,8 +40,48 @@ public class FacturaServiceImplementation {
         return facturaRepository.findAll();
     }
 
-    public void saveByFiesta(Fiesta fiesta) {
+    public void crearFactura(Date fecha){
         Factura factura = new Factura();
+        factura.setFecha(fecha);
+        factura.setTotal(0);
+        facturaRepository.save(factura);
+    }
+
+    public void delete(int id){
+        facturaRepository.delete(id);
+    }
+
+    public void update(Factura factura, int id){
+        factura.setId(id);
+        facturaRepository.save(factura);
+    }
+
+    public Factura findById(int id){
+        return facturaRepository.findById(id);
+    }
+
+    public void addPago(int id, Pago pago){
+       Factura factura = facturaRepository.findById(id);
+       factura.setTotal(factura.getTotal() + pago.getMonto());
+       factura.getPagos().add(pago);
+       facturaRepository.save(factura);
+    }
+
+    public double getDiferencia(int id){
+        Factura factura = facturaRepository.findById(id);
+        Set<Pago> pagos = factura.getPagos();
+        double totalPagado = pagos.stream().mapToDouble(o->o.getMonto()).sum();
+        /*
+        int totalPagado = 0;
+        Iterator<Pago> pagoIterator = pagos.iterator();
+        while (pagoIterator.hasNext()){
+            P
+        }*/
+        return factura.getTotal() - totalPagado;
+    }
+
+    public void addFiesta(int id, Fiesta fiesta) {
+        Factura factura = facturaRepository.findById(id);
         total  = 0;
 
         //TODO: ARREGLA LA FECHA
@@ -65,19 +108,6 @@ public class FacturaServiceImplementation {
         lineaDeFactura.setDescripcion("Extra por invitados adicionales");
         return lineaDeFactura;
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
 
     private LineaDeFactura getLineaCombo(Combo combo, boolean turno1, boolean turno2){
         LineaDeFactura lineaCombo = new LineaDeFactura();

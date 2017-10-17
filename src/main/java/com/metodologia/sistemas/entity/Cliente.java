@@ -50,7 +50,7 @@ public class Cliente {
     @ApiModelProperty(name = "Direccion",value = "Direccion", required = false)
     @Getter
     @Setter
-    @OneToOne(fetch=FetchType.EAGER, cascade = CascadeType.MERGE)
+    @OneToOne(fetch=FetchType.EAGER, cascade = CascadeType.PERSIST)
     @JoinColumn(name="direccion_fk", nullable = false)
     private Direccion direccion;
 

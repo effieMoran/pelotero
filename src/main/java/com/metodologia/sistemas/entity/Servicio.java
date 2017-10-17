@@ -31,6 +31,8 @@ public class Servicio {
     private boolean video;
 
     @Id
+    @Getter
+    @Setter
     @GeneratedValue(strategy= GenerationType.IDENTITY)
     @Column(name = "servicio_id")
     private int id;

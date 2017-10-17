@@ -1,5 +1,6 @@
 package com.metodologia.sistemas.entity;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.AllArgsConstructor;
@@ -21,6 +22,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 import java.util.Date;
 import java.util.Set;
@@ -43,6 +46,8 @@ public class Factura {
 
     @Getter
     @Setter
+    @Temporal(TemporalType.DATE)
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy")
     private Date fecha;
 
     @Getter
@@ -67,4 +72,9 @@ public class Factura {
     @ElementCollection(targetClass=LineaDeFactura.class)
     private Set<LineaDeFactura> lineaDeFacturaSet;
 
+    @Getter
+    @Setter
+    @OneToMany(fetch= FetchType.EAGER, cascade = CascadeType.MERGE )
+    @ElementCollection(targetClass=Pago.class)
+    private Set<Pago> pagos;
 }

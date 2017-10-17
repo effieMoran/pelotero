@@ -39,19 +39,7 @@ public class Pago {
     @Getter
     @Setter
     private MedioDePago medioDePago;
-
-    @Getter
-    @Setter
-    @ManyToMany(fetch=FetchType.EAGER, cascade = CascadeType.MERGE )
-    @ElementCollection(targetClass=LineaBebida.class)
-    private Set<LineaBebida> lineaBebidas;
-
-    @Getter
-    @Setter
-    @ManyToMany(fetch=FetchType.EAGER, cascade = CascadeType.MERGE )
-    @ElementCollection(targetClass=Fiesta.class)
-    private Set<Fiesta> fiesta;
-
+    
     @NotNull
     @Temporal(TemporalType.DATE)
     @Getter
@@ -59,6 +47,8 @@ public class Pago {
     private Date fecha;
 
     @Id
+    @Getter
+    @Setter
     @GeneratedValue(strategy= GenerationType.AUTO)
     @Column(name = "pago_id")
     private int id;
