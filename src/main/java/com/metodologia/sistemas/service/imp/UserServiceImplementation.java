@@ -60,8 +60,8 @@ public class UserServiceImplementation implements UserService{
     }
 
     public boolean userMatches(Usuario user){
-        Usuario usuario = userRepository.findByUsername(user.getUsername());
-        return (usuario.getUsername().equals(user.getUsername()) &&
+        Usuario usuario = userRepository.findByUsername(user.getName());
+        return (usuario.getName().equals(user.getName()) &&
                 usuario.getPassword().equals(user.getPassword()));
     }
 }
