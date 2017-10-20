@@ -1,0 +1,60 @@
+{
+  "id": 1,
+  "items": [
+    {
+      "id": 1,
+      "name": "Torta de 3 kilos"
+    },
+    {
+      "id": 2,
+      "name": "Decoración"
+    },
+    {
+      "items": [
+        {
+          "id": 6
+        },
+        {
+          "id": 7
+        }
+      ],
+      "precio": 600
+    },
+    {
+      "id": 1,
+      "items": [
+        {
+          "id": 1,
+          "name": "Torta de 3 kilos"
+        },
+        {
+          "id": 2,
+          "name": "Decoración"
+        }
+
+        ]
+    }
+
+  ],
+  "precio": 10000,
+
+"cliente": {
+  "apellido": "string",
+  "celular": "string",
+  "cuil": "string",
+  "direccion": {
+    "altura": "string",
+    "calle": "string",
+    "nroDepartamento": "string",
+    "piso": 0
+  },
+  "email": "string",
+  "nombre": "string",
+  "otraInformacion": "string",
+
+  "telefono": "string"
+}
+
+}
+
+

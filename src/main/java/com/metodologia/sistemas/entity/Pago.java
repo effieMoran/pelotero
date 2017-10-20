@@ -39,7 +39,7 @@ public class Pago {
     @Getter
     @Setter
     private MedioDePago medioDePago;
-    
+
     @NotNull
     @Temporal(TemporalType.DATE)
     @Getter
