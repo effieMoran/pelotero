@@ -57,6 +57,10 @@ public class Usuario {
 
     @Getter
     @Setter
+    private int idusuario;
+
+    @Getter
+    @Setter
     private String email;
 
 

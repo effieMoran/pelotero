@@ -3,6 +3,7 @@ package com.metodologia.sistemas.service.imp;
 import com.metodologia.sistemas.entity.Bebida;
 import com.metodologia.sistemas.entity.LineaDeFactura;
 import com.metodologia.sistemas.entity.Pago;
+import com.metodologia.sistemas.enums.MedioDePago;
 import com.metodologia.sistemas.repository.BebidaRepository;
 import com.metodologia.sistemas.repository.LineaFacturaRepository;
 import com.metodologia.sistemas.repository.PagoRepository;
@@ -25,6 +26,14 @@ public class PagoServiceImplementation {
 
     public void savePago(Pago pago) {
         pagoRepository.save(pago);
+    }
+
+    public Pago pagarBebida(LineaDeFactura lineaDeFactura, MedioDePago medioDePago){
+        Pago pago = new Pago();
+        pago.setMedioDePago(medioDePago);
+        pago.setMonto(lineaDeFactura.getCantidad()*lineaDeFactura.getPrecioUnitario());
+        pagoRepository.save(pago);
+        return pago;
     }
 
     public LineaDeFactura comprarBebida(Bebida bebida, int cantidad){

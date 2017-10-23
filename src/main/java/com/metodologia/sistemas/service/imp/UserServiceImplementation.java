@@ -16,6 +16,7 @@ public class UserServiceImplementation implements UserService{
 
     @Override
     public void saveUser(Usuario user) {
+        user.setIdusuario(user.getId());
         userRepository.save(user);
     }
 
@@ -33,6 +34,7 @@ public class UserServiceImplementation implements UserService{
     public void updateUser(int id, Usuario user) {
         Usuario usuario = userRepository.findById(id);
         user.setId(id);
+        user.setIdusuario(id);
         userRepository.save(user);
     }
 

@@ -1,6 +1,9 @@
 package com.metodologia.sistemas.controller;
 
+import com.metodologia.sistemas.entity.Bebida;
+import com.metodologia.sistemas.entity.LineaDeFactura;
 import com.metodologia.sistemas.entity.Pago;
+import com.metodologia.sistemas.enums.MedioDePago;
 import com.metodologia.sistemas.service.imp.PagoServiceImplementation;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
@@ -54,5 +57,17 @@ public class PagoController {
     @RequestMapping(method=RequestMethod.GET)
     public List<Pago> list() {
         return pagoServiceImplementation.findAll();
+    }
+
+    @ApiOperation(value = "Comprar bebidas")
+    @RequestMapping(value = "/bebida",method= RequestMethod.POST)
+    public LineaDeFactura pagarBebida(@RequestBody Bebida bebida, @PathVariable int cantidad){
+        return pagoServiceImplementation.comprarBebida(bebida, cantidad);
+    }
+
+    @ApiOperation(value = "Crea un pago en base una linea de bebida en base a un linea de factura")
+    @RequestMapping(value = "/linea",method= RequestMethod.POST)
+    public Pago pagarBebida(@RequestBody LineaDeFactura lineaDeFactura, @PathVariable MedioDePago medioDePago){
+        return pagoServiceImplementation.pagarBebida(lineaDeFactura, medioDePago);
     }
 }

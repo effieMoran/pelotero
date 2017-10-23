@@ -30,6 +30,10 @@ public class Servicio {
     @Setter
     private boolean video;
 
+    @Getter
+    @Setter
+    private String token;
+
     @Id
     @Getter
     @Setter
