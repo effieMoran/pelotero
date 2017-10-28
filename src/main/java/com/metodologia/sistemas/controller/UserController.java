@@ -57,4 +57,18 @@ public class UserController {
     public void save(@PathVariable int id){
         userServiceImplementation.deleteUser(id);
     }
+
+    @ApiOperation(value = "Devuelve una lista de Usuarios")
+    @RequestMapping(value = "/{id}", method=RequestMethod.GET)
+    public Usuario getUsuarioById(@PathVariable int id) {
+        return userServiceImplementation.findById(id);
+    }
+
+
+    @ApiOperation(value = "Devuelve una lista de Usuarios")
+    @RequestMapping(value = "username/{username}", method=RequestMethod.GET)
+    public Usuario getByUserName(@PathVariable String username) {
+        return userServiceImplementation.findByUsername(username);
+    }
+
 }
